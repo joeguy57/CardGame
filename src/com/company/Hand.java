@@ -7,7 +7,7 @@ public class Hand {
     private ArrayList<Card> myHand;
 
     /**
-     * This constructor is in case handsizes are not fairly distributed
+     * This constructor is in case hand-sizes are not fairly distributed
      *
      */
     public Hand(Deck newDeck, int handsize) {

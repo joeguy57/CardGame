@@ -24,11 +24,13 @@ public class Main {
         // Create the deck
         Deck newDeck = new Deck(decksNeeded);
         newDeck.shuffle();
+
         // Deal out the player's hands
         ArrayList<Hand> playerHands;
         playerHands = dealHands(num_of_players, newDeck, handSize);
         showPlayersHand(playerHands);
-        // Remaing Deck
+
+        // Remaining Deck
         System.out.println(newDeck);
     }
 
@@ -62,6 +64,5 @@ public class Main {
         } // for
         return playerHands;
     }
-
 
 }
