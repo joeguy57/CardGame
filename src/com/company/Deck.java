@@ -3,8 +3,7 @@ package com.company;
 import java.util.*;
 
 public class Deck {
-    private int decksNeeded;
-    private static ArrayList<Card> deck;
+    private ArrayList<Card> deck;
 
     public Deck(ArrayList<Card> deck) {
         this.deck = deck;
