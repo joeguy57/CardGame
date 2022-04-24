@@ -3,7 +3,7 @@ package com.company;
 import java.util.*;
 
 public class Deck {
-    private ArrayList<Card> deck;
+    private final ArrayList<Card> deck;
 
     public Deck(ArrayList<Card> deck) {
         this.deck = deck;
@@ -35,7 +35,12 @@ public class Deck {
         Card currentTop = deck.get(0);
         deck.remove(0);
         return currentTop;
-
     }
 
+    @Override
+    public String toString() {
+        return "Deck{" +
+                "deck=" + deck +
+                '}';
+    }
 }

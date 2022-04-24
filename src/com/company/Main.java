@@ -11,29 +11,57 @@ import java.util.Scanner;
  * - Card
  * - Deck
  */
-public class Main { // **
+public class Main {
 
     public static void main(String[] args) {
         // write your code here
         Scanner input = new Scanner(System.in);
-        System.out
-                .println("This is simple card game where cards will be dealt to players.\nHow many players are there?");
-        int playerCount = input.nextInt();
-        System.out.println("How many decks do you require to play a game?");
-        int decksNeeded = input.nextInt();
-        System.out.println("What is your hand size ?");
-        int handsize = input.nextInt();
+        ArrayList<Integer> userInput = requestUserInput(input);
+        int num_of_players = userInput.get(0);
+        int decksNeeded = userInput.get(1);
+        int handSize = userInput.get(2);
+
+        // Create the deck
         Deck newDeck = new Deck(decksNeeded);
         newDeck.shuffle();
-        ArrayList<Hand> playerHands = new ArrayList<>();
-        for (int player = 0; player < playerCount; player++) {
-            Hand newHand = new Hand(newDeck, handsize);
-            playerHands.add(newHand);
-        } // for
+        // Deal out the player's hands
+        ArrayList<Hand> playerHands;
+        playerHands = dealHands(num_of_players, newDeck, handSize);
+        showPlayersHand(playerHands);
+        // Remaing Deck
+        System.out.println(newDeck);
+    }
+
+
+    private static ArrayList<Integer> requestUserInput(Scanner input) {
+        ArrayList<Integer> userInput = new ArrayList<>();
+
+        System.out.println("This is simple card game where cards will be dealt to players." +
+                "\nHow many players are there?");
+        userInput.add(input.nextInt());
+        System.out.println("How many decks do you require to play a game?");
+        userInput.add(input.nextInt());
+        System.out.println("What is your hand size ?");
+        userInput.add(input.nextInt());
+
+        return userInput;
+    }
+
+    private static void showPlayersHand(ArrayList<Hand> playerHands) {
         for (Hand player : playerHands) {
+            System.out.print("Player " + (playerHands.indexOf(player) + 1 )+ "'s hand is :\n ");
             System.out.println(player);
         } // for
-          // There rest of the code can be further explained in README
     }
+
+    private static ArrayList<Hand> dealHands(int playerCount, Deck newDeck, int handSize) {
+        ArrayList<Hand> playerHands = new ArrayList<>();
+        for (int player = 0; player < playerCount; player++) {
+            Hand newHand = new Hand(newDeck, handSize);
+            playerHands.add(newHand);
+        } // for
+        return playerHands;
+    }
+
 
 }

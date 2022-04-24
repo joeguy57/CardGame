@@ -9,8 +9,6 @@ public class Hand {
     /**
      * This constructor is in case handsizes are not fairly distributed
      *
-     * @param newDeck
-     * @param handsize
      */
     public Hand(Deck newDeck, int handsize) {
         myHand = new ArrayList<>();
