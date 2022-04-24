@@ -1,23 +1,22 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Hand {
     private int size;
-    private static ArrayList<Card> myHand;
+    private ArrayList<Card> myHand;
 
     /**
-     * This constructor is incase handsizes are not fairly distributed
-     * @param size and integer
+     * This constructor is in case handsizes are not fairly distributed
+     *
+     * @param newDeck
+     * @param handsize
      */
-    public Hand(int size) {
-        this.size = size;
-    }
-
-    public Hand() {
-        ArrayList<Card> myHand = new ArrayList<>();
-        size = 4;
+    public Hand(Deck newDeck, int handsize) {
+        myHand = new ArrayList<>();
+        for (int i = 0; i < handsize; i++) {
+            myHand.add(newDeck.dealCard());
+        }
     }
 
     public int getSize() {
@@ -36,14 +35,14 @@ public class Hand {
         this.myHand = myHand;
     }
 
-    public static Card placeCard(int index){
+    public Card placeCard(int index) {
         Card currentCardToPlay = myHand.get(index);
         myHand.remove(index);
         return currentCardToPlay;
     }
 
-    public void pickACard(Deck currentDeck){
-         myHand.add(currentDeck.dealCard());
+    public void pickACard(Deck currentDeck) {
+        myHand.add(currentDeck.dealCard());
 
     }
 

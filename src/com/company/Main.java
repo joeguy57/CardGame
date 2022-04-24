@@ -14,32 +14,24 @@ public class Main { //**
     public static void main(String[] args) {
 	// write your code here
         Scanner count = new Scanner(System.in);
-        Scanner decks = new Scanner(System.in);
         System.out.println("This is simple card game where cards will be dealt to players.\nHow many players are there?");
         int playerCount = count.nextInt();
         System.out.println("How many decks do you require to play a game?");
-        int decksNeeded = decks.nextInt();
+        int decksNeeded = count.nextInt();
+        System.out.println("What is your hand size ?");
+        int handsize = count.nextInt();
         Deck newDeck = new Deck(decksNeeded);
         newDeck.shuffle();
-        ArrayList<Hand> playerHands = dealHands(newDeck, playerCount);
+        ArrayList<Hand> playerHands = new ArrayList<>();
+        for (int player = 0; player< playerCount; player++){
+            Hand newHand = new Hand(newDeck, handsize);
+            playerHands.add(newHand);
+        }//for
         for (Hand player : playerHands){
             System.out.println(player);
-        }
+        }//for
         // There rest of the code can be further explained in README
     }
 
-    private static ArrayList<Hand> dealHands(Deck newDeck, int playerCount) {
-        ArrayList<Hand> players = new ArrayList<>();
-        for (int player = 0; player < playerCount; player++){
-            Hand playerHand = new Hand();
-            ArrayList<Card> tempHand = new ArrayList<>();
-            for (int cards = 0; cards < playerHand.getSize(); cards++){
-                tempHand.add(newDeck.dealCard());
-            }
-            playerHand.setMyHand(tempHand);
-            players.add(playerHand);
-        }
 
-        return players;
-    }
 }
